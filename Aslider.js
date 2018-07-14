@@ -21,6 +21,24 @@ class ASlider extends React.Component {
         this.move(-1)
       }
     })
+    //If move buttons exist, add onClick listeners to them
+    //If move buttons exist, add onClick listeners to them
+    if (this.props.buttonLeft) {
+      document
+        .querySelector(".aSliderButtonLeft")
+        .addEventListener("click", e => {
+          e.preventDefault();
+          this.move(-1);
+        });
+    }
+    if (this.props.buttonRight) {
+      document
+        .querySelector(".aSliderButtonRight")
+        .addEventListener("click", e => {
+          e.preventDefault();
+          this.move(1);
+        });
+    }
   }
   //Takes number to move slider by, and moves the slider
   move(number) {
@@ -74,6 +92,15 @@ class ASlider extends React.Component {
 }}
           className="aSliderContainer">{this.displayChildren()}</div>
         </div>
+        {this.props.buttonLeft ? (
+            <div className="aSliderButtonLeft">{this.props.buttonLeft}</div>
+            ) : (false)
+        }
+        {this.props.buttonRight ? (
+          <div className="aSliderButtonRight">{this.props.buttonRight}</div>
+        ) : (
+          false
+        )}
       </div>
     );
   }
@@ -85,4 +112,6 @@ export default ASlider;
 class of container = .aSliderContainer
 class of each card = .card
 class of selected card = .active
+left button = .buttonLeft
+right button = .buttonRight
 */
